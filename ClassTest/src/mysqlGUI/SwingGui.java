@@ -22,7 +22,11 @@ import javax.swing.JTextField;
 public class SwingGui extends JFrame {
 	JTextField[] field = new JTextField[8];
 
-	JButton[] button = { new JButton("전체검색"), new JButton("입력"), new JButton("이름검색"), new JButton("수정"),
+	JButton[] button = {
+			new JButton("전체검색"),
+			new JButton("입력"),
+			new JButton("이름검색"),
+			new JButton("수정"),
 			new JButton("삭제") };
 
 	JTextArea textArea = new JTextArea(20, 80);
@@ -45,8 +49,15 @@ public class SwingGui extends JFrame {
 			e.printStackTrace();
 		}
 
-		JLabel[] label = { new JLabel("사원번호 "), new JLabel("사원이름 "), new JLabel("업   무 "), new JLabel("관리담당 "),
-				new JLabel("고용일자 "), new JLabel("월   급 "), new JLabel("성과급여 "), new JLabel("부서번호 ") };
+		JLabel[] label = {
+				new JLabel("사원번호 "),
+				new JLabel("사원이름 "),
+				new JLabel("업   무 "),
+				new JLabel("관리담당 "),
+				new JLabel("고용일자 "),
+				new JLabel("월   급 "),
+				new JLabel("성과급여 "),
+				new JLabel("부서번호 ") };
 
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container contentPane = this.getContentPane();
@@ -123,8 +134,7 @@ public class SwingGui extends JFrame {
 	}
 
 	public void printText() {
-		textArea.append("[ MESSAGE ] 사용 시 주의사항\n▶ 사원번호, 고용일자는 변경 불가합니다\n▶ 고용일자 입력 시 : -를 입력해주세요 (예시,2024-01-01)"
-				+ "\n▶ 사원 수정 시, 사원 번호를 입력 후 버튼을 누르세요\n");
+		textArea.append("[ MESSAGE ] 사용 시 주의사항\n▶ 사원번호, 고용일자는 변경 불가합니다\n▶ 고용일자 입력 시 : - 를 입력해주세요 (예시,2024-01-01)" + "\n▶ 사원 수정 시, 사원 번호를 입력 후 버튼을 누르세요\n");
 	}
 
 	public void select() {
@@ -190,7 +200,7 @@ public class SwingGui extends JFrame {
 		try {
 			ResultSet resultSet = statement.executeQuery(sql);
 			textArea.setText("");
-			textArea.append("▶\n");
+			textArea.append("▶ 정보 \n");
 			while (resultSet.next()) {
 				int empno = resultSet.getInt("empno");
 				String ename = resultSet.getString("ename");

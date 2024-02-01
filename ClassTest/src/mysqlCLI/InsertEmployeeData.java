@@ -6,11 +6,13 @@ import java.sql.Statement;
 import java.util.Scanner;
 
 public class InsertEmployeeData {
-	
 	private Scanner scanner = new Scanner(System.in);
 	private Statement statement;
 	
+	//데이터 삽입
 	void insertEmployeeData(Connection connection) {
+		
+		//삽입 Menu
 		try {
 			System.out.println("-----------------------");
 			System.out.println("[Insert] 사원을 입력하세요");
@@ -34,13 +36,9 @@ public class InsertEmployeeData {
 
 			statement = connection.createStatement();
 			String sql = "insert into emp(empno, ename, job, mgr, hiredate, sal, comm, deptno) values (" + empno + ", '"+ ename + "', '" + job + "', " + mgr + ", '" + hiredate + "', " + sal + ", " + comm + ", " + deptno+ ")";
-
-			System.out.println("-----------------------");
-			System.out.println("입력 내용 | " + empno + ", " + ename + ", " + job + ", " + mgr + "," + hiredate + ", " + sal+ ", " + comm + ", " + deptno);
-			System.out.println("-----------------------");
-			
 			int result = statement.executeUpdate(sql);
-
+			
+			//입력 확인 메세지
 			if (result == 1) {
 				System.out.println("[ o 입력 완료 ]");
 			} else {
@@ -48,13 +46,15 @@ public class InsertEmployeeData {
 			}
 		} catch (SQLException e) {
 			System.out.println("[ ! 유효하지 않은 메세지 ] 다시 시도하세요");
-			continueInsertQuery(connection);
 			e.printStackTrace();
 		}
+		
+		// 추가 확인 질문
 		continueInsertQuery(connection);
 
 	}
 	
+	// 진행 여부 확인
 	public void continueInsertQuery(Connection connection) {
 		System.out.print("사원을 추가하시겠습니까? (YES=1, N0=2) | ");
 		String continuChoice = scanner.nextLine();

@@ -9,14 +9,15 @@ public class UpdateEmployeeInfo {
 	private Scanner scanner = new Scanner(System.in);
 	private Statement statement;
 	int result;
-
-	DeleteEmployeeData delete = new DeleteEmployeeData();
-
+	
+	//데이터 수정
 	void updateEmployeeInfo(Connection connection) {
+		
+		//사원 번호 입력
 		System.out.print("[Update] 사원 번호를 입력하세요 | ");
 		int empno = Integer.parseInt(scanner.nextLine());
-		delete.empInfodate(connection, empno);
 		
+		//수정 Menu
 		System.out.println("----------------------------------------------------------------");
 		System.out.println("1. 사원이름 | 2. 업무 | 3. 관리담당 | 4. 월급 | 5. 성과급여 | 6. 부서번호");
 		System.out.println("----------------------------------------------------------------");
@@ -33,11 +34,18 @@ public class UpdateEmployeeInfo {
 				statement = connection.createStatement();
 				String sql = "update emp set ename = '" + ename + "'where empno = " + empno;
 				result = statement.executeUpdate(sql);
+				
+				// 갱신 확인 메세지
 				updatPrint();
+				
 			} catch (SQLException e) {
+				
+				// 오류 메세지
 				exceptionPrint(connection);
 				e.printStackTrace();
 			}
+			
+			// 추가 확인 질문
 			continueUpdateQuery(connection);
 			break;
 
@@ -125,7 +133,7 @@ public class UpdateEmployeeInfo {
 
 	}
 
-	// 갱신 메세지
+	// 갱신 확인 메세지
 	void updatPrint() {
 		if (result == 1) {
 			System.out.println("[ o 갱신 완료 ]");
@@ -140,7 +148,7 @@ public class UpdateEmployeeInfo {
 		continueUpdateQuery(connection);
 	}
 
-	// 추가 확인 메세지
+	// 추가 확인 질문
 	void continueUpdateQuery(Connection connection) {
 		System.out.print("계속 갱신하시겠습니까? (YES=1, N0=2) |");
 		String continuChoice = scanner.nextLine();
