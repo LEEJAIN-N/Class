@@ -128,10 +128,8 @@ public class SwingGui extends JFrame {
 	// 이름검색
 	public void selectName() {
 		String sql = String.format("select * from emp where ename = '%s'", field[1].getText());
-		getInfo(sql);
 		try {
 			ResultSet resultSet = statement.executeQuery(sql);
-
 			if (resultSet.next()) {
 				field[0].setText(resultSet.getString("empno"));
 				field[1].setText(resultSet.getString("ename"));
