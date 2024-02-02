@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class DeleteEmployeeData {
 	private Scanner scanner = new Scanner(System.in);
-	DatabaseMenu menu = new DatabaseMenu();
 	
 	private Statement statement;
 	private ResultSet resultSet;
@@ -70,7 +69,6 @@ public class DeleteEmployeeData {
 				//존재하지 않는 사원 번호
 				if (!found) {
 					System.out.println("[ ! 존재하지 않는 사원 번호 ] 다시 시도하세요");
-					menu.launch(connection);
 				}
 				
 			} catch (SQLException e) {
